@@ -1,0 +1,34 @@
+{% extends 'chatapp/base.html' %}
+{% load static %}
+{% block content %}
+
+<main>
+
+    <section id="room-name-wrapper">
+        <p>Room Name: <span id="room-name"></span></p>
+
+    </section>
+    
+    <!----Video stream-->
+    <section id="video-streams">    
+    </section>
+    <section id="controls-wrapper">
+        <div id="icon-wrapper">
+            <img id="mic-btn" class="control-icon" src="{% static 'images/microphone.svg' %}" alt="">
+        </div>
+        <div id="icon-wrapper">
+            <img id="cam-btn" class="control-icon" src="{% static 'images/video.svg' %}" alt="">
+        </div>
+        <div id="icon-wrapper">
+            <img id="leave-btn" class="leave-icon" src="{% static 'images/leave.svg' %}" alt="">
+        </div>
+    </section>
+
+</main>
+<script type="text/javascript" src="{% static 'Assets/AgoraRTC_N-4.8.1.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/streams.js' %}">
+
+</script>
+
+
+{% endblock %}
