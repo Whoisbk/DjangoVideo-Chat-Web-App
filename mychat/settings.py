@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-%78vi!%dfyrw6*2ie39x!h)0@g%e-q-ygfd=6hb641zb($^2=(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['vid-chat.herokuapp.com','127.0.0.1']
 
 
 # Application definition
