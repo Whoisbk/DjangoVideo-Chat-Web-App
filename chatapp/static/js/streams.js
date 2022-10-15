@@ -1,6 +1,6 @@
 const APP_ID = '985039d605dc45ae81936c57bf1cfd90'
 const CHANNEL = sessionStorage.getItem('room')
-const TOKEN =sessionStorage.getItem('token')
+const TOKEN = sessionStorage.getItem('token')
 let UID = Number(sessionStorage.getItem('UID'))
 
 let name = sessionStorage.getItem('name')
@@ -12,7 +12,7 @@ let remoteUsers = {}
 let joinAndDisplayLocalScreen = async () => {
 
     document.getElementById('room-name').innerText = CHANNEL
-
+    
 
     client.on('user-published',handleUserJoined)
     client.on('user-left',handleUserLeft)
@@ -51,7 +51,7 @@ let handleUserJoined = async (user,mediaType)=>{
         }
 
         player = `<div class="video-container" id="user-container-${user.uid}">
-                    <div class="username-wrapper"><span class="user-name">My Name</span></div>
+                    <div class="username-wrapper"><span class="user-name">Online</span></div>
                     <div class="video-player" id="user-${user.uid}"></div>
                 </div>`
 

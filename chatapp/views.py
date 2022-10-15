@@ -31,7 +31,7 @@ def getToken(request):
     role = 1
 
     token = RtcTokenBuilder.buildTokenWithUid(app_Id,app_Certificate,channel_name,uid,role,privilage_Expired_Timestamp)
-
+    print(token)
     return JsonResponse({'token':token,'uid':uid},safe = False)
 
 def lobby(request):
