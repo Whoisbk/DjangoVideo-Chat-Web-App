@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +27,7 @@ SECRET_KEY = 'django-insecure-%78vi!%dfyrw6*2ie39x!h)0@g%e-q-ygfd=6hb641zb($^2=(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['vid-chat.herokuapp.com','127.0.0.1']
 
 
 # Application definition
@@ -77,7 +79,7 @@ WSGI_APPLICATION = 'mychat.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': str(BASE_DIR / 'db.sqlite3'),
     }
 }
 
@@ -119,10 +121,37 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/images/'
 
+STATICFILES_DIRS =[
+    os.path.join(BASE_DIR, 'static')
+]
+
+MEDIA_ROOT =os.path.join(BASE_DIR,'static/images')
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+#LINODE Settings
+LINODE_BUCKET = config('LINODE_BUCKET')
+LINODE_BUCKET_REGION = 'eu-central-1'
+LINODE_BUCKET_ACCESS_KEY = config('LINODE_BUCKET_ACCESS_KEY')
+LINODE_BUCKET_SECRET_KEY = config('LINODE_BUCKET_SECRET_KEY')
+
+
+#AWS Settings
+AWS_DEFAULT_ACL = 'authenticated-read'
+AWS_S3_ENDPOINT_URL = f'https://{LINODE_BUCKET_REGION}.linodeobjects.com' 
+AWS_ACCESS_KEY_ID = LINODE_BUCKET_ACCESS_KEY
+AWS_SECRET_ACCESS_KEY = LINODE_BUCKET_SECRET_KEY
+AWS_S3_REGION_NAME = LINODE_BUCKET_REGION
+AWS_S3_USE_SSL = True
+AWS_STORAGE_BUCKET_NAME = LINODE_BUCKET
