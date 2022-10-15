@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -140,11 +139,10 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 #LINODE Settings
-LINODE_BUCKET = config('LINODE_BUCKET')
+LINODE_BUCKET = 'vid-chat-files'
 LINODE_BUCKET_REGION = 'eu-central-1'
-LINODE_BUCKET_ACCESS_KEY = config('LINODE_BUCKET_ACCESS_KEY')
-LINODE_BUCKET_SECRET_KEY = config('LINODE_BUCKET_SECRET_KEY')
-
+LINODE_BUCKET_ACCESS_KEY = 'I7111JV3X3JTNDQ5EW2G'
+LINODE_BUCKET_SECRET_KEY = 'EY1YpJ1sBTcbaUfMXRrz5HhCPl4dUAzfc7nzwndT'
 
 #AWS Settings
 AWS_DEFAULT_ACL = 'authenticated-read'
